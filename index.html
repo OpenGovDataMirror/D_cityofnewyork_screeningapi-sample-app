@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/gh/cityofnewyork/access-nyc-patterns@v0.0.11-11/dist/styles/site-default.css" type="text/css" rel="stylesheet">
+    <style>
+        .hideText {z-index: -1; opacity: 0; }
+        .showText {opacity: 1; z-index: 100;}
+        #errors{display: none;}
+        #errors ul {margin: 0; padding: 0 0 0 20px;}
+        #bulkSubmissionForm{position: relative;}
+        #loader{position: absolute; top:0; text-align: center; background: rgba(255, 255, 255, 0.57); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 25px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div id="errors" class="alert alert-danger" role="alert"></div>
+
+        <div class="bg-color-white screen-desktop:border border-color-grey-light screen-desktop:m-4 text-font-size-small p-4">
+            <h1 class="type-h1 w-full text-font-size-larger text-color-blue-dark border-b border-color-grey-mid pb-4 mb-3">ACCESS NYC Eligibility API Bulk Processing</h1>
+
+            <form id="bulkSubmissionForm">
+                <div class="hideText" id="loader">Loading...</div>
+
+                <div class="c-question">
+                    <label class="c-question__label" for="baseurl">Base URL<span style="color:red">*</span></label>
+                    <div class="c-question__container">
+                        <input class="w-full" type="text" id="baseurl" placeholder="Enter Base URL" name="baseurl" maxlength="255">
+                    </div>
+                </div>
+
+                <div class="c-question">
+                    <label class="c-question__label" for="username">Username<span style="color:red">*</span></label>
+                    <div class="c-question__container">
+                        <input type="text" id="username" placeholder="Enter Username" name="username" maxlength="255">
+                    </div>
+                </div>
+
+                <div class="c-question">
+                    <label class="c-question__label" for="password">Password<span style="color:red">*</span></label>
+                    <div class="c-question__container">
+                        <input type="password" id="password" placeholder="Password" name="password" maxlength="255">
+                    </div>
+                </div>
+
+                <div class="c-question">
+                    <label class="c-question__label" for="newpassword">New Password</label>
+                    <div class="c-question__container">
+                        <p>Users must set a new password of their Cognito user pools only while doing first time authentication. Second time onward, the newly set password must be provided in the Password field.</p>
+                        <input type="password" id="newpassword" placeholder="New Password" name="newPassword" maxlength="255">
+                    </div>
+                </div>
+
+                <div class="c-question">
+                    <label class="c-question__label" for="eligibility">Program Codes</label>
+                    <div class="c-question__container">
+                        <p>To only check eligibility for certain programs, add the program codes you wish you check here, separated by a comma</p>
+                        <input class="w-full" id="eligibility" name="programs" maxlength="2048"></input>
+                    </div>
+                </div>
+
+                <div class="c-question">
+                    <label class="c-question__label" for="csv_upload">Upload File<span style="color:red">*</span></label>
+                    <div class="c-question__container">
+                        <input id="csv_upload" type="file" name="csvFile" accept=".csv">
+                    </div>
+                </div>
+
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
